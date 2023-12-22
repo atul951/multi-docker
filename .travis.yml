@@ -1,12 +1,15 @@
+language: node_js
+node_js:
+  - 16
 sudo: required
 services:
   - docker
 
 before_install:
-  - docker build -t akumar33/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t akumar33/multi-docker -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run akumar33/react-test npm test -- --coverage
+  - docker run akumar33/multi-docker npm test -- --coverage
 
 after_success:
   - docker build -t akumar33/multi-client ./client
@@ -18,5 +21,5 @@ after_success:
   # push these images into the dockerhub
   - docker push akumar33/multi-client
   - docker push akumar33/multi-nginx
-  - docker push akumar33/server
-  - docker push akumar33/worker
+  - docker push akumar33/multi-server
+  - docker push akumar33/multi-worker
