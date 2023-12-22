@@ -6,10 +6,10 @@ services:
   - docker
 
 before_install:
-  - docker build -t akumar33/multi-docker -f ./client/Dockerfile.dev ./client
+  - docker build -t akumar33/multi-docker -f Dockerfile.dev ./client
 
 script:
-  - docker run akumar33/multi-docker npm test -- --coverage
+  - docker run akumar33/multi-docker npm run test -- --coverage
 
 after_success:
   - docker build -t akumar33/multi-client ./client
