@@ -6,20 +6,20 @@ services:
   - docker
 
 before_install:
-  - docker build -t akumar33/multi-docker -f ./client/Dockerfile.dev ./client
+  - docker build -t godyato/multi-docker -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run akumar33/multi-docker npm run test -- --coverage
+  - docker run godyato/multi-docker npm run test -- --coverage
 
 after_success:
-  - docker build -t akumar33/multi-client ./client
-  - docker build -t akumar33/multi-nginx ./nginx
-  - docker build -t akumar33/multi-server ./server
-  - docker build -t akumar33/multi-worker ./worker
+  - docker build -t godyato/multi-client ./client
+  - docker build -t godyato/multi-nginx ./nginx
+  - docker build -t godyato/multi-server ./server
+  - docker build -t godyato/multi-worker ./worker
   # log into the docker CLI
   - echo "$DOCKER_PASSORD" | docker login -u "$DOCKER_ID" --password-stdin
   # push these images into the dockerhub
-  - docker push akumar33/multi-client
-  - docker push akumar33/multi-nginx
-  - docker push akumar33/multi-server
-  - docker push akumar33/multi-worker
+  - docker push godyato/multi-client
+  - docker push godyato/multi-nginx
+  - docker push godyato/multi-server
+  - docker push godyato/multi-worker
