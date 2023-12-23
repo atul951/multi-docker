@@ -17,7 +17,7 @@ after_success:
   - docker build -t godyato/multi-server ./server
   - docker build -t godyato/multi-worker ./worker
   # log into the docker CLI
-  - echo "$DOCKER_PASSORD" | docker login -u "$DOCKER_ID" --password-stdin
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # push these images into the dockerhub
   - docker push godyato/multi-client
   - docker push godyato/multi-nginx
