@@ -23,3 +23,15 @@ after_success:
   - docker push godyato/multi-nginx
   - docker push godyato/multi-server
   - docker push godyato/multi-worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: us-east-1
+  app: multi-docker
+  env: Multi-docker-env
+  bucket_name: elasticbeanstalk-us-east-1-332338351517
+  bucket_path: docker-multi
+  on: 
+    branch: main
+  access_key_id: $AWS_ACCESS_ID
+  secret_access_key: "$AWS_SECRET_KEY"
